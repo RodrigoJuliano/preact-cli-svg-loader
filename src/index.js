@@ -12,7 +12,14 @@ const preactCliSvgLoader = (config, helpers) => {
 
     rules.push({
         test: /\.svg$/,
+        issuer: /\.jsx?$/, // only js
         use: ['preact-svg-loader']
+    })
+  
+    rules.push({
+        test: /\.svg$/,
+        issuer: /.*(?<!\.jsx?)$/, // other than js (probably styles)
+        use: ['url-loader']
     })
 }
 
